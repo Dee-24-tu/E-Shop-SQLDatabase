@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Petite Shoes Online Store</title>
+	<link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+	<!-- The header of the page-->
+	<header>
+		<h1>Petite Shoes Online Store</h1>
+		
+		<blockquote class="slogan">
+			<b>Our purpose:</b><br>
+			Is to make sure you have a pair for any occasion.<br> 
+			Look no further, we are here to make sure you are <br>
+			happy with your tinny feet. Let us put a smile on your face!<br>
+			 &#128522 &#128522 &#128522 
+		 </blockquote>
+	</header>
+
+	<!-- Main Content of the page-->
+	<form action="RegistrationServlet" method="get" class="form">
+		<!-- Start of form-->
+		<p>Please enter your details in the requested fields and click
+			<i>"register"</i>.</p>
+
+
+		<p class="form-label">Name:</p>
+
+		<p>
+			<input class="text-input" type="text" name="name" />
+		</p>
+
+		<p class="form-label">Password:</p>
+
+		<p>
+			<input class="text-input" type="password" name="pass" />
+		</p>
+		
+		<p class="form-label">Email:</p>
+
+		<p>
+			<input class="text-input" type="email" name="email" />
+		</p>	
+
+		<p class="form-label">PostalRegion:</p>
+
+		<p>
+			<select name="PostalRegion">
+				<option class="drop-down" value="Africa">Africa</option>
+				<option class="drop-down" value="Africa">Australia</option>
+				<option class="drop-down" value="Asia">Asia</option>
+				<option class="drop-down" value="Europe">Europe</option>
+				<option class="drop-down" value="North America">North America</option>
+				<option class="drop-down" value="South America">South America</option>
+			</select>
+		</p>
+
+		<p><input class="btn" type="submit" value="REGISTER" /></p>
+	</form>
+	<!-- end of form-->
+	
+	<!-- Footer of the page-->
+	<footer>
+		<p> 
+			<i>This is for educational purposes.</i><br>
+			<br>
+			Keep in contact here:<br>
+			Tell:<a href="tel: +353(0)123-456-789" rel=""> (0)123-456-789</a><br>
+			Email:<a href="mailto:feedback@petitestore.ie"> feedback@petitestore.ie.</a><br>
+			<br>
+			You can also follow us on our social media account.<br>
+			Facebook:<a href="https://www.facebook.com" target="_blank" rel="noopener"> Click </a>to follow.<br>
+			<br>
+			<i>All &#169; rights are reserved for Petite Shoes Store.</i>
+		</p>
+	</footer>
+</body>
+</html>

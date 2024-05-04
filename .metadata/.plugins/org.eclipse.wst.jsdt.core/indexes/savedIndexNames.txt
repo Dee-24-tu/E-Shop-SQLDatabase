@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+C:\Users\D23128294\Desktop\RATHMINES\SoftwareArchitect\DieketsengCynthiaLebuli_Software Architecture 6N1449_ACS62_Project\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+902480489.index
+3304042354.index
+2769810266.index
+606586743.index
+2326336289.index
+1013937691.index

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Petite Shoes Online Store</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body id="welcome-reg">
+	<!-- The header of the page-->
+	<header>
+		<h1>Petite Shoes Online Store</h1>
+		
+		<blockquote class="slogan">
+			<b>Our purpose:</b><br>
+			Is to make sure you have a pair for any occasion.<br> 
+			Look no further, we are here to make sure you are <br>
+			happy with your tinny feet. Let us put a smile on your face!<br>
+			 &#128522 &#128522 &#128522 
+		 </blockquote>
+	</header>
+	
+	<!-- This is the  form block-->
+	<form action="WelcomeServlet" method="get" class="form">
+		<!-- Start of form-->
+
+		<p class="">You have successfully registered! <br>
+		 Please click <i>"Login"</i> below to
+			proceed to sign in.</p>
+		<p>
+			<input class="btn" type="button" value="LOGIN"
+				onClick="parent.location='login.html'" />
+		</p>
+
+	</form>
+	<!-- end of form-->
+	
+	<!-- Footer of the page-->
+	<footer>
+		<p> 
+			<i>This is for educational purposes.</i><br>
+			<br>
+			Keep in contact here:<br>
+			Tell:<a href="tel: +353(0)123-456-789" rel=""> (0)123-456-789</a><br>
+			Email:<a href="mailto:feedback@petitestore.ie"> feedback@petitestore.ie.</a><br>
+			<br>
+			You can also follow us on our social media account.<br>
+			Facebook:<a href="https://www.facebook.com" target="_blank" rel="noopener"> Click </a>to follow.<br>
+			<br>
+			<i>All &#169; rights are reserved for Petite Shoes Store.</i>
+		</p>
+	</footer>
+</body>
+</html>

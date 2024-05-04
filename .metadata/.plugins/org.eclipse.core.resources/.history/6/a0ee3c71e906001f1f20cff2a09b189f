@@ -1,0 +1,72 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class LoginServlet
+ */
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public LoginServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+    
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		 PrintWriter out = response.getWriter();
+		 
+		  if(LoginDatabaseConnector.validate(request.getParameter("name"),request.getParameter("pass"))){  
+		        RequestDispatcher rd=request.getRequestDispatcher("WelcomeServlet");  
+		        rd.forward(request,response);  
+		    }  
+		    else{  
+		         
+		        RequestDispatcher rd=request.getRequestDispatcher("index.html");  
+		        rd.include(request,response);  
+		        out.println(" <div id ='mainsection'><!-- This is the main content bar--><div id='scr'></div>"
+    					+ "		<div id='main'><!-- This is the  form block--><div id='main-wrapper'>");
+                out.println("<h2>Error:</h2>");
+                out.println("<p>Sorry username or password error. Please try again!</p>");
+                out.println("<!-- Footer of the page-->\r\n"
+    					+ "	<footer>\r\n"
+    					+ "		<p> \r\n"
+    					+ "			<i>This is for educational purposes.</i><br>\r\n"
+    					+ "			<br>\r\n"
+    					+ "			Keep in contact here:<br>\r\n"
+    					+ "			Tell:<a href=\"tel: +353(0)123-456-789\" rel=\"\"> (0)123-456-789</a><br>\r\n"
+    					+ "			Email:<a href=\"mailto:feedback@petitestore.ie\"> feedback@petitestore.ie.</a><br>\r\n"
+    					+ "			<br>\r\n"
+    					+ "			You can also follow us on our social media account.<br>\r\n"
+    					+ "			Facebook:<a href=\"https://www.facebook.com\" target=\"_blank\" rel=\"noopener\"> Click </a>to follow.<br>\r\n"
+    					+ "			<br><i>All &#169; rights are reserved for Petite Shoes Store.</i>\r\n</p></footer>");
+                out.println("</div><!-- end of main--><p></p></div> <!-- end of mainsection --></div> <!-- end of wrapper -->");
+                out.println("</body></html>");
+		    }  
+		          
+		    out.close();
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+}

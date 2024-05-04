@@ -1,0 +1,127 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.sql.ResultSet;
+
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class QueryServlet
+ */
+@WebServlet("/QueryServlet")
+public class QueryServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	private Connection connect = null;
+	private Statement statement = null;
+	private ResultSet result= null;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public QueryServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
+        try {
+            // Step 1: Load MySQL JDBC driver
+            Class.forName("com.mysql.jdbc.Driver");
+
+            // Step 2: Connect to the database
+            connect = DriverManager.getConnection("jdbc:mysql://localhost/OnlinePetiteShoesStore", "root", "");
+
+            statement = connect.createStatement();
+            
+            // Start building the HTML response
+            out.println("<!DOCTYPE html><html><head><link rel='stylesheet' href='css/style.css'/><head><body>");
+            out.println("<form method='get' action='OrderServlet'>");
+            out.println("<table border='1' cellpadding='6'>");
+            out.println("<tr>");
+            out.println("<th>&nbsp;</th>");
+            out.println("<th>Product</th>");
+            out.println("<th>Brand</th>");
+            out.println("<th>Price</th>");
+            out.println("<th>Qty</th>");
+            out.println("<th>Size</th>");
+            out.println("</tr>");
+
+            // Step 3: Execute SQL query to retrieve products
+            String product = request.getParameter("product");
+            String sql = "SELECT * FROM products WHERE qty > 0 AND (product = '" + product + "') ORDER BY product, brand";
+            result = statement.executeQuery(sql);
+
+            // Step 4: Process the result set and generate HTML table rows
+            while (result.next()) {
+               String id = result.getString("id");
+               String[] sizes = {"Size 1", "Size 2", "Size 3"};
+               for (String size : sizes) {
+                
+               // Print each size for the current product
+               //for (int i = 1; i <= 3; i++) {
+                 	//String size = "Size " + 1;
+                    out.println("<tr>");
+                    out.println("<td><input type='checkbox' name='id' value='" + id + "' /></td>");
+                    out.println("<td>" + result.getString("product") + "</td>");
+                    out.println("<td>" + result.getString("brand") + "</td>");
+                    out.println("<td>$" + result.getString("price") + "</td>");
+                    out.println("<td><input class='table-input' type='text' size='2' value='1' name='qty" + id + "_" + size + "' /></td>");
+                   // out.println("<td><input class='table-input' type='text' size='4' value='" + size + "' name='size" + id + "_" + size + "' readonly /></td>");
+                   // out.println("</tr>");
+                    
+                 // Display three different size options
+                   // String[] sizes = {"Size 1", "Size 2", "Size 3"};
+                    //for (String item : sizes) {
+                      //  out.println("<td><input class='table-input' type='text' size='4' value='" + size + "' name='size" + id + "_" + size + "' readonly /></td>");
+                    //}
+
+                    
+                }
+            }
+
+            // Complete the HTML response
+            out.println("</table><br />");
+            out.println("<input class='btn' type='submit' value='ORDER' />");
+            out.println("<input class='btn' type='reset' value='CLEAR' /></form>");
+            out.println("</body></html>");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            out.println("An error occurred while processing your request.");
+        } finally {
+            // Step 5: Close database resources in a finally block
+            try {
+                if (result != null) {
+                    result.close();
+                }
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connect != null) {
+                    connect.close();
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+}
